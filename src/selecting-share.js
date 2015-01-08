@@ -15,7 +15,7 @@
             '<a href="" class="facebook">Facebook</a>',
           '</li>',
           '<li>',
-            '<a href="" class="twitter">Twitter</a>',
+            '<a href="http://twitter.com/intent/tweet?text={{ TEXT }}" class="twitter">Twitter</a>',
           '</li>',
         '</ul>'
       ].join('');
@@ -31,6 +31,8 @@
       element.innerHTML = this.template;
       doc.body.appendChild(element);
       this.elements.boxShare = element;
+      this.elements.twitter = this.elements.boxShare.querySelector('.twitter');
+      this.elements.facebook = this.elements.boxShare.querySelector('.facebook');
     },
 
     start: function() {
@@ -47,12 +49,17 @@
           return;
         }
 
+        this.updateText(text);
         boxShare.style.top = event.y + 'px';
         boxShare.style.left = event.x + 'px';
       };
 
       global.selecting(this.elements.content, onSelected.bind(this));
       this.event();
+    },
+
+    updateText: function(text) {
+      this.elements.twitter.href = this.elements.twitter.getAttribute('href').replace('{{ TEXT }}', text);
     },
 
     event: function() {

@@ -11,6 +11,7 @@ install_dependencies:
 
 jshint:
 	$(JSHINT) src/selecting-share.js
+	echo "jshint was executed!"
 
 test_js:
 	$(MOCHA_PHANTOM) test/SpecRunner.html
