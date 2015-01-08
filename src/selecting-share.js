@@ -9,16 +9,17 @@
   var SelectingShare = function(params) {
     this.elements = {};
     this.elements.content = params.element;
+    this.url = params.url || document.URL;
     this.template = [
         '<ul>',
           '<li>',
-            '<a href="" class="facebook">Facebook</a>',
+            '<a href="http://www.facebook.com/sharer/sharer.php?u={{ URL }}" class="facebook">Facebook</a>',
           '</li>',
           '<li>',
-            '<a href="http://twitter.com/intent/tweet?text={{ TEXT }}" class="twitter">Twitter</a>',
+            '<a href="{{ TWITTER_URL }}" class="twitter">Twitter</a>',
           '</li>',
         '</ul>'
-      ].join('');
+      ].join('').replace(/\{\{ URL \}\}/g, this.url);
   };
 
   SelectingShare.prototype = {
@@ -59,7 +60,8 @@
     },
 
     updateText: function(text) {
-      this.elements.twitter.href = this.elements.twitter.getAttribute('href').replace('{{ TEXT }}', text);
+      var twitterURL = 'http://twitter.com/intent/tweet?text={{ TEXT }} - ' + this.url;
+      this.elements.twitter.href = twitterURL.replace('{{ TEXT }}', text);
     },
 
     event: function() {
