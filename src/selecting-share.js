@@ -11,6 +11,7 @@
     createElement: function() {
       var element = document.createElement('div');
       element.className = 'selecting-share';
+      element.style.position = 'absolute';
 
       var html = [
         '<ul>',
@@ -24,14 +25,21 @@
       ].join('');
 
       element.innerHTML = html;
+      document.body.appendChild(element);
       this.elements.boxShare = element;
     },
 
     start: function() {
       this.createElement();
 
-      var onSelected = function(selected) {
+      var boxShare = this.elements.boxShare;
 
+      var onSelected = function(result) {
+        var text = result.text;
+        var event = result.event;
+
+        boxShare.style.top = event.pageY + 'px';
+        boxShare.style.left = event.pageX + 'px';
       };
 
       global.selecting(this.elements.content, onSelected);
