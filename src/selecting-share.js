@@ -3,7 +3,7 @@
   'use strict';
 
   var isChild = function(element, elementParent) {
-    return element.parentNode == elementParent;
+    return element.parentNode === elementParent;
   };
 
   var SelectingShare = function(params) {
@@ -23,13 +23,13 @@
 
   SelectingShare.prototype = {
     createElement: function() {
-      var element = document.createElement('div');
+      var element = doc.createElement('div');
       element.className = 'selecting-share';
       element.style.position = 'absolute';
       this.cleanElement(element);
 
       element.innerHTML = this.template;
-      document.body.appendChild(element);
+      doc.body.appendChild(element);
       this.elements.boxShare = element;
     },
 
@@ -59,9 +59,9 @@
       var boxShare = this.elements.boxShare;
       var content = this.elements.content;
 
-      document.addEventListener('mouseup', function(e) {
-        if (e.target == content) return;
-        if (isChild(e.target, content)) return;
+      doc.addEventListener('mouseup', function(e) {
+        if (e.target === content) { return; }
+        if (isChild(e.target, content)) { return; }
 
         this.cleanElement(boxShare);
       }.bind(this));
