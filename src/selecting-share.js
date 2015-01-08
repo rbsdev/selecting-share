@@ -38,12 +38,16 @@
         var text = result.text;
         var event = result.event;
 
-        boxShare.style.top = event.pageY + 'px';
-        boxShare.style.left = event.pageX + 'px';
+        boxShare.style.top = event.y + 'px';
+        boxShare.style.left = event.x + 'px';
       };
 
       global.selecting(this.elements.content, onSelected);
     }
+  };
+
+  global.selectingShare = function(param) {
+    new SelectingShare(param).start();
   };
 
 }(window, document));
