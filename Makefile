@@ -15,7 +15,7 @@ test_js:
 	$(MOCHA_PHANTOM) test/SpecRunner.html
 
 minify:
-	$(UGLIFY) src/selecting-share.js --mangle --output src/selecting-share.js
+	$(UGLIFY) bower_components/selecting/src/selecting.js  src/selecting-share.js -o dist/selecting-share.min.js
 	echo "minified!"
 
 deploy: jshint test_js minify
