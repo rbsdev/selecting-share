@@ -60,6 +60,10 @@
     },
 
     updateText: function(text) {
+      this.updateTwitterText(text);
+    },
+
+    updateTwitterText: function(text) {
       var twitterURL = 'http://twitter.com/intent/tweet?text={{ TEXT }} - ' + this.url;
       this.elements.twitter.href = twitterURL.replace('{{ TEXT }}', text);
     },
