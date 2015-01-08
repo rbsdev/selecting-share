@@ -1,0 +1,18 @@
+{
+  "name": "selecting-share",
+  "version": "0.0.0",
+  "authors": [
+    "Evandro Leopoldino Gonalves <evandrolgoncalves@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "selecting": "~0.0.7"
+  }
+}
