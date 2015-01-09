@@ -5,8 +5,8 @@
   var isChild = function(element, parent) {
     var node = element.parentNode;
 
-    while (node != null) {
-      if (node == parent) { return true; }
+    while (node !== null) {
+      if (node === parent) { return true; }
       node = node.parentNode;
     }
 
