@@ -2,8 +2,15 @@
 
   'use strict';
 
-  var isChild = function(element, elementParent) {
-    return element.parentNode === elementParent;
+  var isChild = function(element, parent) {
+    var node = element.parentNode;
+
+    while (node != null) {
+      if (node == parent) { return true; }
+      node = node.parentNode;
+    }
+
+    return false;
   };
 
   var SelectingShare = function(params) {
