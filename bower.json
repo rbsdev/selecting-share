@@ -1,18 +1,26 @@
 {
   "name": "selecting-share",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "authors": [
-    "Evandro Leopoldino Gonalves <evandrolgoncalves@gmail.com>"
+    "evandrolg"
   ],
   "license": "MIT",
+  "description": "It's a small library to share user-selected texts",
+  "main": "dist/selecting-share.min.js",
+  "keywords": [
+    "selecting",
+    "share",
+    "facebook",
+    "twitter",
+    "text"
+  ],
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests"
+    "test"
   ],
   "dependencies": {
-    "selecting": "~0.0.7"
+    "selecting": "*"
   }
 }
