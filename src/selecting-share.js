@@ -24,14 +24,14 @@
     this.callback = params.callback || function() {};
     this.hasGooglePlus = isUndefined(params.hasGooglePlus) ? true : params.hasGooglePlus;
     this.hasFacebook = isUndefined(params.hasFacebook) ? true : params.hasFacebook;
-    this.hassTwitter = isUndefined(params.hasTwitter) ? true: params.hasTwitter;
+    this.hasTwitter = isUndefined(params.hasTwitter) ? true: params.hasTwitter;
   };
 
   SelectingShare.prototype = {
     createTemplate: function() {
       var facebook = '<li><a href="http://www.facebook.com/sharer/sharer.php?u={{ URL }}" class="facebook">Facebook</a></li>';
       var twitter = '<li><a href="{{ TWITTER_URL }}" class="twitter">Twitter</a></li>';
-      var googlePlus = '<li><a href="https://plus.google.com/share?url={{ URL  }} class="twitter">Google Plus</a></li>';
+      var googlePlus = '<li><a href="https://plus.google.com/share?url={{ URL }} class="twitter">Google Plus</a></li>';
 
       var content = '';
       if (this.hasFacebook) { content += facebook; }
@@ -42,9 +42,9 @@
         '<ul>',
           '{{ CONTENT }}',
         '</ul>'
-      ].join('').replace('{{ CONTENT  }}', content).replace(/\{\{ URL \}\}/g, this.url);
+      ].join('').replace('{{ CONTENT }}', content).replace(/\{\{ URL \}\}/g, this.url);
 
-     return template;
+      return template;
     },
 
     createElement: function() {
