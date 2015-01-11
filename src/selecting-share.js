@@ -81,6 +81,8 @@
 
       global.selecting(this.elements.content, onSelected.bind(this));
       this.event();
+
+      return this;
     },
 
     updateText: function(text) {
@@ -111,7 +113,7 @@
   };
 
   global.selectingShare = function(param) {
-    new SelectingShare(param).start();
+    return new SelectingShare(param).start();
   };
 
 }(window, document));
