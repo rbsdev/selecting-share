@@ -13,15 +13,18 @@
     return false;
   };
 
+  var isUndefined = function(value) {
+    return value === undefined;
+  };
+
   var SelectingShare = function(params) {
     this.elements = {};
     this.elements.content = params.element;
     this.url = params.url || document.URL;
     this.callback = params.callback || function() {};
-    this.social = {};
-    this.hasGooglePlus = params.googlePlus;
-    this.hasFacebook = params.facebook;
-    this.hassTwitter = params.twitter;
+    this.hasGooglePlus = isUndefined(params.hasGooglePlus) ? true : params.hasGooglePlus;
+    this.hasFacebook = isUndefined(params.hasFacebook) ? true : params.hasFacebook;
+    this.hassTwitter = isUndefined(params.hasTwitter) ? true: params.hasTwitter;
   };
 
   SelectingShare.prototype = {
