@@ -17,29 +17,40 @@
     this.elements = {};
     this.elements.content = params.element;
     this.url = params.url || document.URL;
-    this.template = [
-        '<ul>',
-          '<li>',
-            '<a href="http://www.facebook.com/sharer/sharer.php?u={{ URL }}" class="facebook">Facebook</a>',
-          '</li>',
-          '<li>',
-            '<a href="{{ TWITTER_URL }}" class="twitter">Twitter</a>',
-          '</li>',
-          '<li>',
-            '<a href="https://plus.google.com/share?url={{ URL  }} class="twitter">Google Plus</a>',
-          '</li>',
-        '</ul>'
-      ].join('').replace(/\{\{ URL \}\}/g, this.url);
+    this.callback = params.callback || function() {};
+    this.social = {};
+    this.hasGooglePlus = params.googlePlus;
+    this.hasFacebook = params.facebook;
+    this.hassTwitter = params.twitter;
   };
 
   SelectingShare.prototype = {
+    createTemplate: function() {
+      var facebook = '<li><a href="http://www.facebook.com/sharer/sharer.php?u={{ URL }}" class="facebook">Facebook</a></li>';
+      var twitter = '<li><a href="{{ TWITTER_URL }}" class="twitter">Twitter</a></li>';
+      var googlePlus = '<li><a href="https://plus.google.com/share?url={{ URL  }} class="twitter">Google Plus</a></li>';
+
+      var content = '';
+      if (this.hasFacebook) { content += facebook; }
+      if (this.hasTwitter) { content += twitter;  }
+      if (this.hasGooglePlus) { content += googlePlus; }
+
+      var template = [
+        '<ul>',
+          '{{ CONTENT }}',
+        '</ul>'
+      ].join('').replace('{{ CONTENT  }}', content).replace(/\{\{ URL \}\}/g, this.url);
+
+     return template;
+    },
+
     createElement: function() {
       var element = doc.createElement('div');
       element.className = 'selecting-share';
       element.style.position = 'absolute';
       this.cleanElement(element);
 
-      element.innerHTML = this.template;
+      element.innerHTML = this.createTemplate();
       doc.body.appendChild(element);
       this.elements.boxShare = element;
       this.elements.twitter = this.elements.boxShare.querySelector('.twitter');
