@@ -25,6 +25,9 @@
           '<li>',
             '<a href="{{ TWITTER_URL }}" class="twitter">Twitter</a>',
           '</li>',
+          '<li>',
+            '<a href="https://plus.google.com/share?url={{ URL  }} class="twitter">Google Plus</a>',
+          '</li>',
         '</ul>'
       ].join('').replace(/\{\{ URL \}\}/g, this.url);
   };
