@@ -74,6 +74,7 @@ describe('selectingShare', function() {
       'element': document.querySelector('#container-test'), 
       'url': url
     });
+
     return document.querySelector('.selecting-share');
   };
 
@@ -85,6 +86,16 @@ describe('selectingShare', function() {
       expect(element.querySelector('.twitter')).to.be.an('object');
       expect(element.querySelector('.facebook')).to.be.an('object');
       expect(element.querySelector('.google-plus')).to.be.an('object');
+    });
+
+    it('should call selecting component', function() {
+      var selectingCache = window.selecting;
+      window.selecting = function() {
+        expect(true).to.be.true();
+      };
+
+      createInstance();
+      window.selecting = selectingCache;
     });
   });
 
