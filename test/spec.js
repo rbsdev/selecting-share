@@ -96,12 +96,11 @@ describe('selectingShare', function() {
 
       var url = {
         'facebook': 'http://www.facebook.com/sharer/sharer.php?u=' + url,
-        'twitter': 'http://twitter.com/intent/tweet?text={{ TEXT }} - ' + url,
+        'twitter': document.URL + '#',
         'google-plus': 'http://plus.google.com/share?url=' + url
       }
-
+      console.log(href);
       var expectedUrl = url[social];
-
       expect(href).to.equal(expectedUrl);
     };
 
@@ -114,12 +113,7 @@ describe('selectingShare', function() {
     });
 
     it('should has correct url to twitter', function() {
-      // var url = 'http://www.zerohora.com.br';
-      // var element = createInstance(url);
-      // var href = element.querySelector('.twitter').href;
-      // var expectedUrl = 'http://twitter.com/intent/tweet?text={{ TEXT }} - ' + url;
-
-      // expect(href).to.equal(expectedUrl);
+      verifyURL('twitter');
     });
   });
 
