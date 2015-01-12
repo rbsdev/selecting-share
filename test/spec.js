@@ -1,4 +1,8 @@
 describe('selectingShare', function() {
+  afterEach(function() {
+    var element = document.querySelector('.selecting-share');
+    if (element) { element.remove(); }
+  });
 
   describe('instance', function() {
     var verifyParameter = function(param) {
@@ -28,6 +32,7 @@ describe('selectingShare', function() {
     it('should set element passed by parameter', function() {
       var param = { 'element': document.querySelector('#container-test') };
       var result = window.selectingShare(param);
+
       expect(result.elements.content).to.equal(param.element);
     });
 
@@ -61,6 +66,18 @@ describe('selectingShare', function() {
 
     it('should default value to twitter to be true', function() {
       verifyDefaultSocialParameter({ 'hasTwitter': undefined }, true);
+    });
+  });
+
+  describe('creation', function() {
+    it('should exists selecting-share html', function() {
+      window.selectingShare({ element: document.querySelector('#container-test') });
+      var element = document.querySelector('.selecting-share');
+
+      expect(element).to.be.an('object');
+      expect(element.querySelector('.twitter')).to.be.an('object');
+      expect(element.querySelector('.facebook')).to.be.an('object');
+      expect(element.querySelector('.google-plus')).to.be.an('object');
     });
   });
 

@@ -14,7 +14,6 @@
   };
 
   var isUndefined = function(value) {
-    console.log(value === undefined);
     return value === undefined;
   };
 
@@ -30,9 +29,11 @@
 
   SelectingShare.prototype = {
     createTemplate: function() {
-      var facebook = '<li><a href="http://www.facebook.com/sharer/sharer.php?u={{ URL }}" class="facebook">Facebook</a></li>';
-      var twitter = '<li><a href="{{ TWITTER_URL }}" class="twitter">Twitter</a></li>';
-      var googlePlus = '<li><a href="https://plus.google.com/share?url={{ URL }} class="twitter">Google Plus</a></li>';
+      var facebook = "<li><a href='http://www.facebook.com/sharer/sharer.php?u={{ URL }}' \
+                             class='facebook'>Facebook</a></li>";
+      var twitter = "<li><a href='{{ TWITTER_URL }}' class='twitter'>Twitter</a></li>";
+      var googlePlus = "<li><a href='https://plus.google.com/share?url={{ URL }}' class='google-plus'>\
+                                Google Plus</a></li>";
 
       var content = '';
       if (this.hasFacebook) { content += facebook; }
