@@ -69,15 +69,57 @@ describe('selectingShare', function() {
     });
   });
 
+  var createInstance = function(url) {
+    window.selectingShare({ 
+      'element': document.querySelector('#container-test'), 
+      'url': url
+    });
+    return document.querySelector('.selecting-share');
+  };
+
   describe('creation', function() {
     it('should exists selecting-share html', function() {
-      window.selectingShare({ element: document.querySelector('#container-test') });
-      var element = document.querySelector('.selecting-share');
+      var element = createInstance();
 
       expect(element).to.be.an('object');
       expect(element.querySelector('.twitter')).to.be.an('object');
       expect(element.querySelector('.facebook')).to.be.an('object');
       expect(element.querySelector('.google-plus')).to.be.an('object');
+    });
+  });
+
+  describe('social urls', function() {
+    var verifyURL = function(social) {
+      var url = 'http://www.zerohora.com.br';
+      var element = createInstance(url);
+      var href = element.querySelector('.' + social).href;
+
+      var url = {
+        'facebook': 'http://www.facebook.com/sharer/sharer.php?u=' + url,
+        'twitter': 'http://twitter.com/intent/tweet?text={{ TEXT }} - ' + url,
+        'google-plus': 'http://plus.google.com/share?url=' + url
+      }
+
+      var expectedUrl = url[social];
+
+      expect(href).to.equal(expectedUrl);
+    };
+
+    it('should has correct url to facebook', function() {
+      verifyURL('facebook');
+    });
+
+    it('should has correct url to googlePlus', function() {
+      verifyURL('google-plus');
+    });
+
+    it('should has correct url to twitter', function() {
+      // var url = 'http://www.zerohora.com.br';
+      // var element = createInstance(url);
+      // var href = element.querySelector('.twitter').href;
+      // var expectedUrl = 'http://twitter.com/intent/tweet?text={{ TEXT }} - ' + url;
+
+      // expect(href).to.equal(expectedUrl);
     });
   });
 
