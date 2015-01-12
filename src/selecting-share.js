@@ -14,6 +14,7 @@
   };
 
   var isUndefined = function(value) {
+    console.log(value === undefined);
     return value === undefined;
   };
 
@@ -24,7 +25,7 @@
     this.callback = params.callback || function() {};
     this.hasGooglePlus = isUndefined(params.hasGooglePlus) ? true : params.hasGooglePlus;
     this.hasFacebook = isUndefined(params.hasFacebook) ? true : params.hasFacebook;
-    this.hasTwitter = isUndefined(params.hasTwitter) ? true: params.hasTwitter;
+    this.hasTwitter = isUndefined(params.hasTwitter) ? true : params.hasTwitter;
   };
 
   SelectingShare.prototype = {
