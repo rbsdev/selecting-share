@@ -38,11 +38,8 @@
       if (this.hasTwitter) { content += twitter;  }
       if (this.hasGooglePlus) { content += googlePlus; }
 
-      var template = [
-        '<ul>',
-          '{{ CONTENT }}',
-        '</ul>'
-      ].join('').replace('{{ CONTENT }}', content).replace(/\{\{ URL \}\}/g, this.url);
+      var template = '<ul>{{ CONTENT }}</ul>'.replace('{{ CONTENT }}', content)
+                                             .replace(/\{\{ URL \}\}/g, this.url);
 
       return template;
     },
