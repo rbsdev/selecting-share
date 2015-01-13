@@ -73,7 +73,6 @@
           return;
         }
 
-        console.log(result.event);
         this.updateText(text);
         boxShare.style.top = event.pageY + 'px';
         boxShare.style.left = event.pageX + 'px';
