@@ -73,9 +73,10 @@
           return;
         }
 
+        console.log(result.event);
         this.updateText(text);
-        boxShare.style.top = event.y + 'px';
-        boxShare.style.left = event.x + 'px';
+        boxShare.style.top = event.pageY + 'px';
+        boxShare.style.left = event.pageX + 'px';
       };
 
       global.selecting(this.elements.content, onSelected.bind(this));
