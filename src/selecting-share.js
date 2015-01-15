@@ -17,6 +17,22 @@
     return value === undefined;
   };
 
+  var isLib = function(element) {
+    return global.jQuery && element instanceof global.jQuery ||
+              global.Zepto && element instanceof global.Zepto;
+
+  };
+
+  var isNodeList = function(element) {
+    var stringRepr = Object.prototype.toString.call(element);
+
+    return typeof element === 'object' &&
+          /^\[object (HTMLCollection|NodeList|Object)\]$/.test(stringRepr) &&
+          element.hasOwnProperty('length') &&
+          (element.length === 0 || (typeof element[0] === 'object' &&
+          element[0].nodeType > 0));
+  };
+
   var SelectingShare = function(params) {
     this.elements = {};
     this.elements.content = params.element;
@@ -24,24 +40,25 @@
     this.callback = params.callback || function() {};
     this.hasGooglePlus = isUndefined(params.hasGooglePlus) ? true : params.hasGooglePlus;
     this.hasFacebook = isUndefined(params.hasFacebook) ? true : params.hasFacebook;
-    this.hasTwitter = isUndefined(params.hasTwitter) ? true : params.hasTwitter;
+    this.hasTwitter = isUndefined(params.hasTwitter) ? true: params.hasTwitter;
   };
 
   SelectingShare.prototype = {
     createTemplate: function() {
-      var facebook = "<li><a href='http://www.facebook.com/sharer/sharer.php?u={{ URL }}' \
-                             class='facebook'>Facebook</a></li>";
-      var twitter = "<li><a href='#' class='twitter'>Twitter</a></li>";
-      var googlePlus = "<li><a href='http://plus.google.com/share?url={{ URL }}' class='google-plus'>\
-                                Google Plus</a></li>";
+      var facebook = '<li><a href="http://www.facebook.com/sharer/sharer.php?u={{ URL }}" class="facebook">Facebook</a></li>';
+      var twitter = '<li><a href="{{ TWITTER_URL }}" class="twitter">Twitter</a></li>';
+      var googlePlus = '<li><a href="https://plus.google.com/share?url={{ URL }} class="twitter">Google Plus</a></li>';
 
       var content = '';
       if (this.hasFacebook) { content += facebook; }
       if (this.hasTwitter) { content += twitter;  }
       if (this.hasGooglePlus) { content += googlePlus; }
 
-      var template = '<ul>{{ CONTENT }}</ul>'.replace('{{ CONTENT }}', content)
-                                             .replace(/\{\{ URL \}\}/g, this.url);
+      var template = [
+        '<ul>',
+          '{{ CONTENT }}',
+        '</ul>'
+      ].join('').replace('{{ CONTENT }}', content).replace(/\{\{ URL \}\}/g, this.url);
 
       return template;
     },
@@ -57,6 +74,8 @@
       this.elements.boxShare = element;
       this.elements.twitter = this.elements.boxShare.querySelector('.twitter');
       this.elements.facebook = this.elements.boxShare.querySelector('.facebook');
+
+      this.callback();
     },
 
     start: function() {
@@ -112,7 +131,31 @@
   };
 
   global.selectingShare = function(param) {
-    return new SelectingShare(param).start();
+    var element = param.element;
+
+    if (isLib(element)) {
+      param.element.each(function() {
+        var keys = param;
+        keys.element = this;
+
+        new SelectingShare(keys).start();
+      });
+
+      return;
+    }
+
+    if (isNodeList(element)) {
+      [].forEach.call(element, function(item) {
+        var keys = param;
+        keys.element = item;
+
+        new SelectingShare(keys).start();
+      });
+
+      return;
+    }
+
+    new SelectingShare(param).start();
   };
 
 }(window, document));
