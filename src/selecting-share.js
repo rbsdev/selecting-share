@@ -64,6 +64,12 @@
     },
 
     createElement: function() {
+      var hasElement = document.querySelector('selecting-share') !== null;
+
+      if (hasElement) {
+        return;
+      }
+
       var element = doc.createElement('div');
       element.className = 'selecting-share';
       element.style.position = 'absolute';
