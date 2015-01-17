@@ -103,14 +103,15 @@ describe('selectingShare', function() {
     var verifyURL = function(social) {
       var url = 'http://www.zerohora.com.br';
       var element = createInstance(url);
+      console.log(element);
       var href = element.querySelector('.' + social).href;
 
       var url = {
         'facebook': 'http://www.facebook.com/sharer/sharer.php?u=' + url,
         'twitter': document.URL + '#',
         'google-plus': 'http://plus.google.com/share?url=' + url
-      }
-      console.log(href);
+      };
+
       var expectedUrl = url[social];
       expect(href).to.equal(expectedUrl);
     };

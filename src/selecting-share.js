@@ -45,20 +45,19 @@
 
   SelectingShare.prototype = {
     createTemplate: function() {
-      var facebook = '<li><a href="http://www.facebook.com/sharer/sharer.php?u={{ URL }}" class="facebook">Facebook</a></li>';
-      var twitter = '<li><a href="{{ TWITTER_URL }}" class="twitter">Twitter</a></li>';
-      var googlePlus = '<li><a href="https://plus.google.com/share?url={{ URL }} class="twitter">Google Plus</a></li>';
+      var facebook = '<li><a href="http://www.facebook.com/sharer/sharer.php?u={{ URL }}" \
+                      class="facebook">Facebook</a></li>';
+      var twitter = '<li><a href="#" class="twitter">Twitter</a></li>';
+      var googlePlus = '<li><a href="http://plus.google.com/share?url={{ URL }}" \
+                       class="google-plus">Google Plus</a></li>';
 
       var content = '';
       if (this.hasFacebook) { content += facebook; }
       if (this.hasTwitter) { content += twitter;  }
       if (this.hasGooglePlus) { content += googlePlus; }
 
-      var template = [
-        '<ul>',
-          '{{ CONTENT }}',
-        '</ul>'
-      ].join('').replace('{{ CONTENT }}', content).replace(/\{\{ URL \}\}/g, this.url);
+      var template = '<ul>{{ CONTENT }}</ul>'
+                      .replace('{{ CONTENT }}', content).replace(/\{\{ URL \}\}/g, this.url);
 
       return template;
     },
@@ -161,7 +160,7 @@
       return;
     }
 
-    new SelectingShare(param).start();
+    return new SelectingShare(param).start();
   };
 
 }(window, document));
