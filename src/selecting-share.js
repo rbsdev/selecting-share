@@ -1,8 +1,18 @@
-(function(global, doc) {
+(function(global, doc,factory) {
+
+  if (typeof exports === 'object' && exports) {
+    factory(exports); // CommonJS
+  } else if (typeof define === 'function' && define.amd) {
+    define(['exports'], factory); // AMD
+  } else {
+    factory(global, doc); // <script>
+  }
+
+}(window, document, function(global, doc) {
 
   'use strict';
 
-  var isChild = function(element, parent) {
+    var isChild = function(element, parent) {
     var node = element.parentNode;
 
     while (node !== null) {
@@ -19,7 +29,7 @@
 
   var isLib = function(element) {
     return global.jQuery && element instanceof global.jQuery ||
-              global.Zepto && element instanceof global.Zepto;
+           global.Zepto && element instanceof global.Zepto;
 
   };
 
@@ -163,4 +173,4 @@
     return new SelectingShare(param).start();
   };
 
-}(window, document));
+}));
