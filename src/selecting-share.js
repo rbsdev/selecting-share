@@ -1,18 +1,33 @@
-(function(global, doc,factory) {
+/*
+  * SelectingShare - A library to share selected content
+  * https://github.com/rbsdev/selecting-share
+  * author: Evandro Leopoldino Goncalves <evandrolgoncalves@gmail.com>
+  * http://github.com/evandrolg
+  * http://github.com/rbsdev
+  * License: MIT
+*/
 
+(function(global, factory) {
+
+  /*global define: false*/
+  /*global exports: true*/
   if (typeof exports === 'object' && exports) {
     factory(exports); // CommonJS
   } else if (typeof define === 'function' && define.amd) {
     define(['exports'], factory); // AMD
   } else {
-    factory(global, doc); // <script>
+    factory(global); // <script>
   }
 
-}(window, document, function(global, doc) {
+} (window, function(global) {
 
   'use strict';
 
-    var isChild = function(element, parent) {
+  var isWindow = global === window;
+  var w = isWindow ? global : window;
+  var doc = document;
+
+  var isChild = function(element, parent) {
     var node = element.parentNode;
 
     while (node !== null) {
@@ -28,8 +43,8 @@
   };
 
   var isLib = function(element) {
-    return global.jQuery && element instanceof global.jQuery ||
-           global.Zepto && element instanceof global.Zepto;
+    return w.jQuery && element instanceof w.jQuery ||
+           w.Zepto && element instanceof w.Zepto;
 
   };
 
@@ -46,7 +61,7 @@
   var SelectingShare = function(params) {
     this.elements = {};
     this.elements.content = params.element;
-    this.url = params.url || document.URL;
+    this.url = params.url || doc.URL;
     this.callback = params.callback || function() {};
     this.hasGooglePlus = isUndefined(params.hasGooglePlus) ? true : params.hasGooglePlus;
     this.hasFacebook = isUndefined(params.hasFacebook) ? true : params.hasFacebook;
@@ -73,7 +88,7 @@
     },
 
     createElement: function() {
-      var hasElement = document.querySelector('selecting-share') !== null;
+      var hasElement = doc.querySelector('selecting-share') !== null;
 
       if (hasElement) {
         return;
@@ -112,7 +127,7 @@
         boxShare.style.left = event.pageX + 'px';
       };
 
-      global.selecting(this.elements.content, onSelected.bind(this));
+      w.selecting(this.elements.content, onSelected.bind(this));
       this.event();
 
       return this;
