@@ -40,4 +40,4 @@ Then you can call <code>window.selectingShare</code> function passing DOM elemen
 * **callback** <code>function</code>
 
 ## Contributors
-|[![@evandrolg](https://avatars3.githubusercontent.com/u/444054?v=3&amp;s=96)](https://github.com/evandrolg)|
+[![@evandrolg](https://avatars3.githubusercontent.com/u/444054?v=3&amp;s=96)](https://github.com/evandrolg)
