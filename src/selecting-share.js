@@ -100,7 +100,7 @@
         doc.body.appendChild(element);
       }
       
-      this.elements.boxShare = element || document.querySelector('.selecting-share');
+      this.elements.boxShare = document.querySelector('.selecting-share');
       this.elements.twitter = this.elements.boxShare.querySelector('.twitter');
       this.elements.facebook = this.elements.boxShare.querySelector('.facebook');
 
