@@ -1,0 +1,26 @@
+{
+  "name": "selecting-share",
+  "version": "0.0.4",
+  "authors": [
+    "evandrolg"
+  ],
+  "license": "MIT",
+  "description": "It's a small library to share user-selected texts",
+  "main": "dist/selecting-share.min.js",
+  "keywords": [
+    "selecting",
+    "share",
+    "facebook",
+    "twitter",
+    "text"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ],
+  "dependencies": {
+    "selecting": "*"
+  }
+}

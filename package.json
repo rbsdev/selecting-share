@@ -1,0 +1,14 @@
+{
+  "name": "selecting-share",
+  "author": "EvandroLG",
+  "version": "0.0.4",
+  "devDependencies": {
+    "jshint": "^2.5.x",
+    "mocha": "^2.1.x",
+    "mocha-phantomjs": "^3.5.2",
+    "chai": "^1.10.x",
+    "phantomjs": "^1.9.13",
+    "uglify-js": "^2.4.16",
+    "vigilia": "0.0.6"
+  }
+}
