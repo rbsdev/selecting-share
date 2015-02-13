@@ -22,7 +22,7 @@ It's an agnostic library, ie you don't need to be using jQuery or Zepto in your 
   <script src="selecting-share.js"></script>
 ```
 
-<code>selecting-share</code> also has support for AMD and CommonJS.
+selecting-share also has support for AMD and CommonJS.
 
 Then you can call <code>window.selectingShare</code> function passing DOM element (or jQuery object) as parameter. For example:
 ```js
