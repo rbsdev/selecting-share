@@ -20,7 +20,7 @@ It's an agnostic library, ie you don't need to be using jQuery or Zepto in your 
 
 ```html
   <script src="selecting-share.js"></script>
-``
+```
 
 <code>selecting-share</code> also has support for AMD and CommonJS.
 
