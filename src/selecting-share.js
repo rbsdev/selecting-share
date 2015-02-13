@@ -90,18 +90,17 @@
     createElement: function() {
       var hasElement = doc.querySelector('.selecting-share') !== null;
 
-      if (hasElement) {
-        return;
+      if (!hasElement) {
+        var element = doc.createElement('div');
+        element.className = 'selecting-share';
+        element.style.position = 'absolute';
+        this.cleanElement(element);
+
+        element.innerHTML = this.createTemplate();
+        doc.body.appendChild(element);
       }
-
-      var element = doc.createElement('div');
-      element.className = 'selecting-share';
-      element.style.position = 'absolute';
-      this.cleanElement(element);
-
-      element.innerHTML = this.createTemplate();
-      doc.body.appendChild(element);
-      this.elements.boxShare = element;
+      
+      this.elements.boxShare = element || document.querySelector('.selecting-share');
       this.elements.twitter = this.elements.boxShare.querySelector('.twitter');
       this.elements.facebook = this.elements.boxShare.querySelector('.facebook');
 
@@ -110,7 +109,6 @@
 
     start: function() {
       this.createElement();
-
       var boxShare = this.elements.boxShare;
 
       var onSelected = function(result) {
@@ -138,8 +136,8 @@
     },
 
     updateTwitterText: function(text) {
-      var twitterURL = 'http://twitter.com/intent/tweet?text={{ TEXT }} - ' + this.url;
-      this.elements.twitter.href = twitterURL.replace('{{ TEXT }}', text);
+      // var twitterURL = 'http://twitter.com/intent/tweet?text={{ TEXT }} - ' + this.url;
+      // this.elements.twitter.href = twitterURL.replace('{{ TEXT }}', text);
     },
 
     event: function() {
