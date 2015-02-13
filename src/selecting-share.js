@@ -88,7 +88,7 @@
     },
 
     createElement: function() {
-      var hasElement = doc.querySelector('selecting-share') !== null;
+      var hasElement = doc.querySelector('.selecting-share') !== null;
 
       if (hasElement) {
         return;
