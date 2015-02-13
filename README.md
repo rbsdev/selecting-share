@@ -19,7 +19,7 @@ To install selecting-share, execute:
 It's an agnostic library, ie you don't need to be using jQuery or Zepto in your project. You simply need to include it at the end of your HTML code:
 
 ```html
-  <script src="selecting-share.js"></script>
+  <script src="selecting-share.min.js"></script>
 ```
 
 selecting-share also has support for AMD and CommonJS.
@@ -38,6 +38,9 @@ Then you can call <code>window.selectingShare</code> function passing DOM elemen
 * **hasTwitter** <code>boolean</code> (by default <code>true</code>)
 * **hasGooglePlus** <code>boolean</code> (by default <code>true</code>)
 * **callback** <code>function</code>
+
+## Example:
+[See a simple example](http://rbsdev.github.io/selecting-share).
 
 ## Contributors
 [![@evandrolg](https://avatars3.githubusercontent.com/u/444054?v=3&amp;s=96)](https://github.com/evandrolg)

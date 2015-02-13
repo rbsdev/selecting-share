@@ -136,8 +136,8 @@
     },
 
     updateTwitterText: function(text) {
-      // var twitterURL = 'http://twitter.com/intent/tweet?text={{ TEXT }} - ' + this.url;
-      // this.elements.twitter.href = twitterURL.replace('{{ TEXT }}', text);
+      var twitterURL = 'http://twitter.com/intent/tweet?text={{ TEXT }} - ' + this.url;
+      this.elements.twitter.href = twitterURL.replace('{{ TEXT }}', text);
     },
 
     event: function() {
