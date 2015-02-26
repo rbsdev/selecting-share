@@ -1,5 +1,5 @@
 # selecting-share
-A solution to share through social network the selected texts by the user. Selecting-share use [selecting library](https://github.com/EvandroLG/selecting/).
+A solution to share through social networks the selected texts by the user. Selecting-share use [selecting library](https://github.com/EvandroLG/selecting/).
 
 ## Instalation
 To install selecting-share, execute:
